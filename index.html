@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Omar's Hair Studio — Kadıköy Bay & Bayan Kuaför</title>
+<meta name="description" content="Kadıköy Osmanağa'da bay & bayan kuaför. Saç kesimi, sakal tasarımı, saç boyama, balyaj, keratin bakım ve cilt bakımı. WhatsApp ile randevu: 0543 843 80 90." />
+<meta property="og:title" content="Omar's Hair Studio — Kadıköy Bay & Bayan Kuaför" />
+<meta property="og:description" content="Kadıköy'ün 4.8 yıldızlı bay & bayan kuaförü. Erkek ve kadın saç bakımı, boyama, balyaj. WhatsApp ile randevu." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<script>
+  // ====== BACKEND ENDPOINT ======
+  // /api/bookings adresine POST eder. Aşağıdaki backend/ klasöründeki
+  // örneklerden birini (PHP / Node / Supabase) sunucunuza kurun.
+  window.BOOKING_ENDPOINT = "/api/bookings";
+</script>
+<style>
+  :root{
+    --paper:#f5f1ea;
+    --ink:#1a1814;
+    --brass:#a8784a;
+    --leather:#3d2c20;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .serif{font-family:'Instrument Serif',Georgia,serif;font-weight:400}
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+  .eyebrow{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--brass);margin-bottom:16px;display:block}
+
+  /* Nav */
+  nav.top{position:sticky;top:0;z-index:40;background:rgba(245,241,234,.85);backdrop-filter:blur(10px);border-bottom:1px solid rgba(26,24,20,.05)}
+  nav.top .row{display:flex;align-items:center;justify-content:space-between;height:64px}
+  nav.top .brand{font-family:'Instrument Serif',serif;font-size:24px}
+  nav.top .links{display:none;gap:32px;font-size:13px;font-weight:500;letter-spacing:.05em;text-transform:uppercase}
+  nav.top .links a:hover{color:var(--brass)}
+  nav.top .tel{font-size:13px;font-weight:500;border-bottom:1px solid rgba(26,24,20,.2);padding-bottom:2px}
+  @media(min-width:768px){nav.top .links{display:flex}}
+
+  /* Hero */
+  .hero{position:relative;min-height:85vh;display:flex;align-items:center;overflow:hidden;background:#0a0a0a}
+  .hero img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55}
+  .hero .veil{position:absolute;inset:0;background:linear-gradient(to right,rgba(10,10,10,.8),rgba(10,10,10,.4),transparent)}
+  .hero .content{position:relative;padding:96px 0;width:100%}
+  .hero h1{font-family:'Instrument Serif',serif;color:#fff;font-size:clamp(40px,7vw,80px);line-height:1.05;margin-bottom:32px;max-width:18ch}
+  .hero p{color:#d4d4d8;font-size:18px;max-width:42ch;margin-bottom:40px;line-height:1.7}
+  .hero .ctas{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+  .btn-primary{background:var(--brass);color:#fff;padding:14px 28px;border:0;font:500 15px 'Inter',sans-serif;cursor:pointer;border-radius:2px;transition:opacity .2s}
+  .btn-primary:hover{opacity:.9}
+  .rating{display:flex;align-items:center;gap:12px;padding:12px 16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:2px;color:#fff;font-size:14px}
+  .rating .stars{color:var(--brass);letter-spacing:2px}
+
+  /* Section */
+  section{padding:96px 0}
+  h2.title{font-family:'Instrument Serif',serif;font-size:clamp(32px,5vw,56px);line-height:1.05;margin-bottom:24px}
+
+  /* Services */
+  .services-row{display:grid;gap:64px;grid-template-columns:1fr}
+  @media(min-width:768px){.services-row{grid-template-columns:1fr 1fr}}
+  .services-list>div{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;padding:24px 0;border-bottom:1px solid rgba(26,24,20,.1)}
+  .services-list>div:first-child{border-top:1px solid rgba(26,24,20,.1)}
+  .services-list h3{font-size:18px;font-weight:500;margin-bottom:4px}
+  .services-list p{font-size:14px;color:#71717a}
+  .services-list .price{font-family:'Instrument Serif',serif;font-style:italic;font-size:26px;color:var(--brass)}
+  .link-arrow{display:inline-block;margin-top:32px;font-size:14px;font-weight:500;border-bottom:1px solid var(--ink);padding-bottom:2px;cursor:pointer;background:none;border-top:0;border-left:0;border-right:0;color:inherit}
+  .link-arrow:hover{color:var(--brass);border-color:var(--brass)}
+
+  /* Gallery */
+  .gallery{background:#f4f4f5}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  @media(min-width:768px){.grid{grid-template-columns:repeat(3,1fr);gap:24px}}
+  .col{display:flex;flex-direction:column;gap:16px}
+  @media(min-width:768px){.col{gap:24px}.col.offset{padding-top:48px}}
+  .col img{width:100%;object-fit:cover;border-radius:2px;border:1px solid rgba(0,0,0,.05)}
+  .col.hide-mobile{display:none}
+  @media(min-width:768px){.col.hide-mobile{display:flex}}
+
+  /* Quote */
+  .quote{background:var(--ink);color:var(--paper);padding:80px 24px;text-align:center}
+  .quote p{font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(24px,3.5vw,40px);line-height:1.2;max-width:780px;margin:0 auto}
+  .quote .stars{color:var(--brass);font-size:20px;margin-bottom:24px;letter-spacing:4px}
+  .quote .src{margin-top:32px;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:rgba(245,241,234,.5)}
+
+  /* About */
+  .about-grid{display:grid;gap:64px;grid-template-columns:1fr;align-items:center}
+  @media(min-width:768px){.about-grid{grid-template-columns:1fr 1fr;gap:96px}}
+  .info{margin-top:32px}
+  .info .row{display:flex;gap:16px;align-items:flex-start;margin-bottom:20px}
+  .info .row span.dash{color:var(--brass);margin-top:6px}
+  .info .label{font-size:13px;font-weight:500;text-transform:uppercase;letter-spacing:.08em}
+  .info .val{color:#71717a;font-size:14px;margin-top:4px}
+  .map-wrap{position:relative;aspect-ratio:1/1;background:#e4e4e7;border-radius:2px;overflow:hidden;border:1px solid rgba(0,0,0,.05)}
+  .map-wrap iframe{width:100%;height:100%;border:0;filter:grayscale(40%)}
+  .map-card{position:absolute;left:20px;right:20px;bottom:20px;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);padding:20px;box-shadow:0 20px 40px rgba(0,0,0,.15)}
+  .map-card .lbl{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#a1a1aa;margin-bottom:8px}
+  .map-card p{font-size:14px;font-weight:500;margin-bottom:16px}
+  .map-card a{display:block;padding:10px;background:var(--ink);color:#fff;text-align:center;font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;transition:background .2s}
+  .map-card a:hover{background:var(--brass)}
+
+  /* Sticky CTA */
+  .sticky-cta{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:50;width:calc(100% - 32px);max-width:420px}
+  .sticky-cta .pill{background:var(--ink);color:#fff;padding:8px;border-radius:999px;box-shadow:0 20px 40px rgba(0,0,0,.3);display:flex;align-items:center;justify-content:space-between;border:1px solid rgba(255,255,255,.1)}
+  .sticky-cta .phone{padding:0 12px 0 20px}
+  .sticky-cta .phone .l{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#a1a1aa}
+  .sticky-cta .phone .v{font-size:14px;font-weight:500}
+  .sticky-cta button{background:var(--brass);color:#fff;border:0;padding:12px 24px;border-radius:999px;font:600 14px 'Inter';cursor:pointer}
+
+  /* Footer */
+  footer{background:var(--paper);border-top:1px solid rgba(26,24,20,.05);padding:48px 0 140px}
+  footer .row{display:flex;flex-direction:column;align-items:center;gap:24px;text-align:center}
+  @media(min-width:768px){footer .row{flex-direction:row;justify-content:space-between;text-align:left}}
+  footer p,footer a{color:#a1a1aa;font-size:13px}
+  footer a:hover{color:var(--ink)}
+
+  /* Modal */
+  .modal{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:100;display:none;align-items:center;justify-content:center;padding:16px}
+  .modal.open{display:flex}
+  .modal .box{background:#fff;padding:32px;border-radius:4px;width:100%;max-width:480px;max-height:90vh;overflow:auto}
+  .modal h3{font-family:'Instrument Serif',serif;font-size:32px;margin-bottom:8px}
+  .modal .sub{color:#71717a;font-size:14px;margin-bottom:24px}
+  .modal label{display:block;font-size:13px;font-weight:500;margin-bottom:6px;margin-top:14px}
+  .modal input,.modal select,.modal textarea{width:100%;padding:10px 12px;border:1px solid #d4d4d8;border-radius:2px;font:14px 'Inter';background:#fff}
+  .modal textarea{min-height:70px;resize:vertical}
+  .modal .actions{margin-top:24px;display:flex;gap:12px;justify-content:flex-end}
+  .modal .actions button{padding:12px 24px;border-radius:2px;font:500 14px 'Inter';cursor:pointer;border:0}
+  .modal .cancel{background:transparent;color:#71717a}
+  .modal .submit{background:var(--brass);color:#fff}
+  .modal .submit:disabled{opacity:.6;cursor:wait}
+  .toast{position:fixed;top:24px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:14px 24px;border-radius:4px;z-index:200;font-size:14px;opacity:0;transition:opacity .3s;pointer-events:none}
+  .toast.show{opacity:1}
+  .toast.error{background:#b91c1c}
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="wrap row">
+    <span class="brand">Omar's Hair Studio</span>
+    <div class="links">
+      <a href="#services">Hizmetler</a>
+      <a href="#gallery">Galeri</a>
+      <a href="#about">Hikayemiz</a>
+      <a href="#contact">İletişim</a>
+    </div>
+    <a class="tel" href="https://wa.me/905438438090?text=Merhaba%2C%20Omar%27s%20Hair%20Studio%20i%C3%A7in%20randevu%20almak%20istiyorum." target="_blank" rel="noopener">0543 843 80 90</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <img class="bg" src="hero-barber.jpg" alt="Omar's Hair Studio - berber çalışırken" />
+  <div class="veil"></div>
+  <div class="wrap content">
+    <span class="eyebrow">Est. Kadıköy</span>
+    <h1 class="serif">Kadıköy'de Bay & Bayan Kuaför Sanatı.</h1>
+    <p>Erkek ve kadın saç bakımında geleneksel teknikler ile modern estetiğin buluştuğu adres. Kesimden boyamaya, sakaldan keratin bakıma — her detay özenle.</p>
+    <div class="ctas">
+      <a class="btn-primary" href="https://wa.me/905438438090?text=Merhaba%2C%20Omar%27s%20Hair%20Studio%20i%C3%A7in%20randevu%20almak%20istiyorum." target="_blank" rel="noopener" style="text-decoration:none;display:inline-block">WhatsApp'tan Randevu Al</a>
+      <div class="rating"><span class="stars">★★★★★</span><span>4.8 (171 Yorum)</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap services-row">
+    <div>
+      <span class="eyebrow">— Tarifelerimiz</span>
+      <h2 class="title">Hizmetlerimiz & Tarifelerimiz</h2>
+      <p style="color:#71717a;max-width:40ch">Sadece bir kesim değil, kendinize ayırdığınız o özel anın keyfini çıkarın.</p>
+      <a class="link-arrow" href="https://wa.me/905438438090?text=Merhaba%2C%20Omar%27s%20Hair%20Studio%20i%C3%A7in%20randevu%20almak%20istiyorum." target="_blank" rel="noopener" style="text-decoration:none">WhatsApp'tan Randevu Al →</a>
+    </div>
+    <div>
+      <h3 class="serif" style="font-size:22px;margin-bottom:8px;color:var(--brass)">Erkek Hizmetleri</h3>
+      <div class="services-list" style="margin-bottom:40px">
+        <a href="https://wa.me/905438438090?text=Merhaba%2C%20%22Sa%C3%A7%20Kesimi%20%26%20Stil%22%20hizmeti%20i%C3%A7in%20randevu%20almak%20istiyorum." target="_blank" rel="noopener" style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;color:inherit;text-decoration:none"><div><h3>Saç Kesimi & Stil</h3><p>Yüz hatlarına uygun modern ve klasik kesimler.</p></div><span class="price">600₺</span></a>
+        <a href="https://wa.me/905438438090?text=Merhaba%2C%20%22Sakal%20Tasar%C4%B1m%C4%B1%22%20hizmeti%20i%C3%A7in%20randevu%20almak%20istiyorum." target="_blank" rel="noopener" style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;color:inherit;text-decoration:none"><div><h3>Sakal Tasarımı</h3><p>Sıcak havlu ve ustura ile sakal şekillendirme.</p></div><span class="price">450₺</span></a>
+        <a href="https://wa.me/905438438090?text=Merhaba%2C%20%22V.I.P.%20Bak%C4%B1m%22%20hizmeti%20i%C3%A7in%20randevu%20almak%20istiyorum." target="_blank" rel="noopener" style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;color:inherit;text-decoration:none"><div><h3>V.I.P. Bakım (Saç + Sakal + Cilt)</h3><p>Saç, sakal, cilt bakımı ve yüz masajı.</p></div><span class="price">1200₺</span></a>
+        <a href="https://wa.me/905438438090?text=Merhaba%2C%20%22Cilt%20Bak%C4%B1m%C4%B1%22%20hizmeti%20i%C3%A7in%20randevu%20almak%20istiyorum." target="_blank" rel="noopener" style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;color:inherit;text-decoration:none"><div><h3>Cilt Bakımı</h3><p>Siyah nokta temizliği ve nemlendirici maske.</p></div><span class="price">500₺</span></a>
+      </div>
+
+      <h3 class="serif" style="font-size:22px;margin-bottom:8px;color:var(--brass)">Kadın Hizmetleri</h3>
+      <div class="services-list">
+        <a href="https://wa.me/905438438090?text=Merhaba%2C%20%22Kad%C4%B1n%20Sa%C3%A7%20Kesimi%20%26%20F%C3%B6n%22%20hizmeti%20i%C3%A7in%20randevu%20almak%20istiyorum." target="_blank" rel="noopener" style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;color:inherit;text-decoration:none"><div><h3>Kadın Saç Kesimi & Fön</h3><p>Saç yapınıza uygun modern kesim ve profesyonel fön.</p></div><span class="price">750₺</span></a>
+        <a href="https://wa.me/905438438090?text=Merhaba%2C%20%22Sa%C3%A7%20Boyama%22%20hizmeti%20i%C3%A7in%20randevu%20almak%20istiyorum." target="_blank" rel="noopener" style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;color:inherit;text-decoration:none"><div><h3>Saç Boyama (Tek Renk)</h3><p>Premium boyalarla parlak ve kalıcı renk.</p></div><span class="price">1500₺</span></a>
+        <a href="https://wa.me/905438438090?text=Merhaba%2C%20%22Balyaj%20%2F%20R%C3%B6fle%22%20hizmeti%20i%C3%A7in%20randevu%20almak%20istiyorum." target="_blank" rel="noopener" style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;color:inherit;text-decoration:none"><div><h3>Balyaj / Röfle</h3><p>Doğal görünümlü ışıltılı renk geçişleri.</p></div><span class="price">2500₺</span></a>
+        <a href="https://wa.me/905438438090?text=Merhaba%2C%20%22Keratin%20Bak%C4%B1m%22%20hizmeti%20i%C3%A7in%20randevu%20almak%20istiyorum." target="_blank" rel="noopener" style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;color:inherit;text-decoration:none"><div><h3>Keratin Bakım & Düzleştirme</h3><p>Pürüzsüz, parlak ve sağlıklı saçlar.</p></div><span class="price">3000₺</span></a>
+        <a href="https://wa.me/905438438090?text=Merhaba%2C%20%22Topuz%20%2F%20Day%C4%B1n%C4%B1k%20Sa%C3%A7%22%20hizmeti%20i%C3%A7in%20randevu%20almak%20istiyorum." target="_blank" rel="noopener" style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;color:inherit;text-decoration:none"><div><h3>Topuz & Dağınık Saç</h3><p>Düğün, nişan ve özel davetler için.</p></div><span class="price">1000₺</span></a>
+        <a href="https://wa.me/905438438090?text=Merhaba%2C%20%22Kaş%20Tasar%C4%B1m%C4%B1%22%20hizmeti%20i%C3%A7in%20randevu%20almak%20istiyorum." target="_blank" rel="noopener" style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;color:inherit;text-decoration:none"><div><h3>Kaş Tasarımı</h3><p>Yüz hatlarınıza uygun ince işçilik.</p></div><span class="price">250₺</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery" class="gallery">
+  <div class="wrap">
+    <div style="max-width:640px;margin-bottom:64px">
+      <span class="eyebrow">— Çalışmalarımız</span>
+      <h2 class="title">Her detay, ustalığın imzasıdır.</h2>
+    </div>
+    <div class="grid">
+      <div class="col">
+        <img src="gallery-fade.jpg" alt="Skin fade saç kesimi" style="aspect-ratio:4/5" loading="lazy" />
+        <img src="gallery-razor.jpg" alt="Ustura ile sakal tıraşı" style="aspect-ratio:1/1" loading="lazy" />
+      </div>
+      <div class="col offset">
+        <img src="gallery-studio.jpg" alt="Studio interior" style="aspect-ratio:4/5" loading="lazy" />
+        <img src="gallery-result.jpg" alt="Sakal sonuç" style="aspect-ratio:1/1" loading="lazy" />
+      </div>
+      <div class="col hide-mobile">
+        <img src="gallery-woman-style.jpg" alt="Kadın saç stili" style="aspect-ratio:4/5" loading="lazy" />
+        <img src="gallery-woman-color.jpg" alt="Saç boyama ve balyaj" style="aspect-ratio:1/1" loading="lazy" />
+      </div>
+    </div>
+    <div class="grid" style="margin-top:24px">
+      <div class="col">
+        <img src="gallery-woman-care.jpg" alt="Keratin bakım" style="aspect-ratio:1/1" loading="lazy" />
+      </div>
+      <div class="col">
+        <img src="gallery-pole.jpg" alt="Berber direği" style="aspect-ratio:1/1" loading="lazy" />
+      </div>
+      <div class="col hide-mobile">
+        <img src="gallery-products.jpg" alt="Premium ürünler" style="aspect-ratio:1/1" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="quote">
+  <div class="stars">★★★★★</div>
+  <p>"Kadıköy'ün en iyi berberi. Detaylara gösterilen özen inanılmaz — her kesim sonrası farklı bir adam gibi çıkıyorum."</p>
+  <div class="src">Google Maps · 4.8 / 171 Yorum</div>
+</section>
+
+<section id="about">
+  <div class="wrap about-grid" id="contact">
+    <div>
+      <span class="eyebrow">— Hikayemiz</span>
+      <h2 class="title" style="max-width:15ch">Kadıköy'den Tüm İstanbul'a Uzanan Bir Tutku.</h2>
+      <p style="color:#71717a;max-width:48ch;line-height:1.7">Osmanağa'nın kalbinde, her misafirimizi bir dost gibi ağırlıyoruz. Omar's Hair Studio olarak sadece saç kesmiyoruz; bir karakter inşa ediyoruz. Ustalık bizim için bir söz değil, her gün yaşattığımız bir disiplindir.</p>
+      <div class="info">
+        <div class="row"><span class="dash">—</span><div><div class="label">Adres</div><div class="val">Osmanağa, Karadut Sk. No:7/A,<br>34714 Kadıköy / İstanbul</div></div></div>
+        <div class="row"><span class="dash">—</span><div><div class="label">Telefon</div><div class="val"><a href="https://wa.me/905438438090?text=Merhaba%2C%20Omar%27s%20Hair%20Studio%20i%C3%A7in%20randevu%20almak%20istiyorum." target="_blank" rel="noopener">0543 843 80 90</a></div></div></div>
+        <div class="row"><span class="dash">—</span><div><div class="label">Çalışma Saatleri</div><div class="val">Pzt – Cmt: 09:00 – 21:00<br>Pazar: Kapalı</div></div></div>
+      </div>
+    </div>
+    <div class="map-wrap">
+      <iframe title="Omar's Hair Studio konum" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps?q=Osmana%C4%9Fa%2C+Karadut+Sk.+No%3A7%2FA%2C+34714+Kad%C4%B1k%C3%B6y%2Fistanbul&output=embed"></iframe>
+      <div class="map-card">
+        <div class="lbl">Konumumuz</div>
+        <p>Kadıköy Boğa Heykeli'ne 5 dakika yürüme mesafesinde.</p>
+        <a target="_blank" rel="noreferrer" href="https://www.google.com/maps/dir/?api=1&destination=Osmana%C4%9Fa%2C+Karadut+Sk.+No%3A7%2FA%2C+34714+Kad%C4%B1k%C3%B6y%2Fistanbul">Yol Tarifi Al</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sticky-cta">
+  <div class="pill">
+    <a class="phone" href="https://wa.me/905438438090?text=Merhaba%2C%20Omar%27s%20Hair%20Studio%20i%C3%A7in%20randevu%20almak%20istiyorum." target="_blank" rel="noopener">
+      <div class="l">WhatsApp</div>
+      <div class="v">0543 843 80 90</div>
+    </a>
+    <a href="https://wa.me/905438438090?text=Merhaba%2C%20Omar%27s%20Hair%20Studio%20i%C3%A7in%20randevu%20almak%20istiyorum." target="_blank" rel="noopener" style="background:var(--brass);color:#fff;padding:12px 24px;border-radius:999px;font:600 14px Inter;text-decoration:none">Randevu Al</a>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap row">
+    <p>© <span id="yr"></span> Omar's Hair Studio. Tüm hakları saklıdır.</p>
+    <div style="display:flex;gap:24px">
+      <a target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=Omar%27s+Hair+Studio+Kad%C4%B1k%C3%B6y">Google Maps</a>
+      <a href="https://wa.me/905438438090?text=Merhaba%2C%20Omar%27s%20Hair%20Studio%20i%C3%A7in%20randevu%20almak%20istiyorum." target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Booking modal -->
+<div class="modal" id="bookingModal" role="dialog" aria-modal="true">
+  <div class="box">
+    <h3 class="serif">Randevu Talebi</h3>
+    <p class="sub">Bilgilerinizi bırakın, en kısa sürede sizi arayalım.</p>
+    <form id="bookingForm">
+      <label>Ad Soyad *</label>
+      <input name="full_name" required minlength="2" maxlength="100" />
+      <label>Telefon *</label>
+      <input name="phone" required minlength="7" maxlength="30" inputmode="tel" placeholder="0543 ..." />
+      <label>Hizmet *</label>
+      <select name="service" required>
+        <option value="">Seçiniz...</option>
+        <optgroup label="Erkek">
+          <option>Saç Kesimi & Stil</option>
+          <option>Sakal Tasarımı</option>
+          <option>V.I.P. Bakım</option>
+          <option>Cilt Bakımı</option>
+        </optgroup>
+        <optgroup label="Kadın">
+          <option>Kadın Saç Kesimi & Fön</option>
+          <option>Saç Boyama (Tek Renk)</option>
+          <option>Balyaj / Röfle</option>
+          <option>Keratin Bakım & Düzleştirme</option>
+          <option>Topuz & Dağınık Saç</option>
+          <option>Kaş Tasarımı</option>
+        </optgroup>
+      </select>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div><label>Tercih Edilen Tarih</label><input type="date" name="preferred_date" /></div>
+        <div><label>Saat</label><input type="time" name="preferred_time" /></div>
+      </div>
+      <label>Notlar</label>
+      <textarea name="notes" maxlength="1000" placeholder="İsteğe bağlı..."></textarea>
+      <div class="actions">
+        <button type="button" class="cancel" onclick="closeBooking()">Vazgeç</button>
+        <button type="submit" class="submit" id="submitBtn">Randevu Talep Et</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const modal = document.getElementById('bookingModal');
+  function openBooking(){ modal.classList.add('open'); }
+  function closeBooking(){ modal.classList.remove('open'); }
+  modal.addEventListener('click', e => { if(e.target === modal) closeBooking(); });
+
+  function toast(msg, err){
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = 'toast show' + (err ? ' error' : '');
+    setTimeout(() => t.className = 'toast', 3500);
+  }
+
+  document.getElementById('bookingForm').addEventListener('submit', async e => {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true; btn.textContent = 'Gönderiliyor...';
+    const data = Object.fromEntries(new FormData(e.target).entries());
+    try {
+      const res = await fetch(window.BOOKING_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      if(!res.ok) throw new Error('Sunucu hatası');
+      toast('Talebiniz alındı. En kısa sürede arayacağız.');
+      e.target.reset(); closeBooking();
+    } catch(err){
+      toast('Gönderilemedi. Lütfen 0543 843 80 90\'ı arayın.', true);
+    } finally {
+      btn.disabled = false; btn.textContent = 'Randevu Talep Et';
+    }
+  });
+</script>
+</body>
+</html>
